@@ -23,3 +23,5 @@ override.tf.json
 
 .terraformrc
 terraform.rc - игнорируются любые фаилы с частю имени .terraformrc в текущем каталоге
+
+Upd 14.15.2022
