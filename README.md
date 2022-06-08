@@ -32,8 +32,11 @@ HomeWork 04.06.2022: bash
 	не сохранять строки, совпадающие с последней выполненной командой.
 9. 135 RESERVED WORDS {} - список,массив - используется в различных условных циклах, условных операторах, или ограничивает тело функции
 10.  touch file-{000001..87283}.txt - получилось создать только 87283 фаила
-11.  конструкция [[ -d /tmp ]] проверяет наличие каталога tmp
-12.     cd /tmp
+     В WSL получилось создать touch file-{00001..91054}.txt  файлов
+     при большем числе: -bash: /usr/bin/touch: Слишком длинный список аргументов 
+12.  конструкция [[ -d /tmp ]] проверяет наличие каталога tmp
+     Пример использования в скриптах: if [[ -d /tmp ]]; then echo "dir 'tmp' is exist"; else echo "dir 'tmp' not exist"; fi
+14.     cd /tmp
 	mkdir new_path_directory 
 	cp -p /bin/bash /tmp/new_path_directory/bash
 	PATH=/tmp/new_path_directory:$PATH
