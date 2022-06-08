@@ -34,7 +34,7 @@ HomeWork 04.06.2022: bash
 10.  touch file-{000001..87283}.txt - получилось создать только 87283 фаила
      В WSL получилось создать touch file-{00001..91054}.txt  файлов
      при большем числе: -bash: /usr/bin/touch: Слишком длинный список аргументов 
-12.  конструкция [[ -d /tmp ]] проверяет наличие каталога tmp
+12.  конструкция [[ -d /tmp ]] проверяет наличие каталога tmp. Возращает истину или ложь.
      Пример использования в скриптах: if [[ -d /tmp ]]; then echo "dir 'tmp' is exist"; else echo "dir 'tmp' not exist"; fi
 14.     cd /tmp
 	mkdir new_path_directory 
