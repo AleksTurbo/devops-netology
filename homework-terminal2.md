@@ -35,6 +35,8 @@
     reptyr <PID of running process to attach>
 14. tee #команда tee linux принимает данные из одного источника и может сохранять их на выходе в нескольких местах.
     vagrant@vagrant:~$ sudo echo string > /root/new_file
-    -bash: /root/new_file: Permission denied  (#получаем ошибку, т.к. echo встроенная команда оболочки и не срабатывает применение к ней повышения прав sudo)
+    -bash: /root/new_file: Permission denied
+    (#получаем ошибку, т.к. echo встроенная команда оболочки и не срабатывает применение к ней повышения прав sudo)
     vagrant@vagrant:~$ echo string | sudo tee /root/new_file
-    string (#строка выводится, т.к. tee запускается при помощи sudo)
+    string
+    (#строка выводится, т.к. tee запускается при помощи sudo)
