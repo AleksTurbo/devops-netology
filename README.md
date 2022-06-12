@@ -39,11 +39,11 @@ HomeWork 04.06.2022: bash
      0 - возращается в случае успешного выполнения команды!
      значение отличное от 0 - код ошибки или признак НЕуспешного выполнения:
      		aleksturbo@AlksTrbNout:/$ direxist=$([[ -d /tmp ]])
-		aleksturbo@AlksTrbNout:/$ echo $?
-		0 #успесшное выполнение - каталог присутствует
-		aleksturbo@AlksTrbNout:/$ direxist=$([[ -d /temp ]])
-		aleksturbo@AlksTrbNout:/$ echo $?
-		1 #НЕуспесшное выполнение - каталог отсутствует
+		    aleksturbo@AlksTrbNout:/$ echo $?
+		    0 #успесшное выполнение - каталог присутствует
+		    aleksturbo@AlksTrbNout:/$ direxist=$([[ -d /temp ]])
+		    aleksturbo@AlksTrbNout:/$ echo $?
+		    1 #НЕуспесшное выполнение - каталог отсутствует
        Пример использования в скриптах: if [[ -d /tmp ]]; then echo "dir 'tmp' is exist"; else echo "dir 'tmp' not exist"; fi
 12.     cd /tmp
 	mkdir new_path_directory 
