@@ -35,9 +35,17 @@ HomeWork 04.06.2022: bash
      В WSL получилось создать touch file-{00001..91054}.txt  файлов
      или 110222 в таком виде: touch {000001..110222}.txt  
      при большем числе: -bash: /usr/bin/touch: Слишком длинный список аргументов 
-12.  конструкция [[ -d /tmp ]] проверяет наличие каталога tmp. Возращает истину или ложь.
-     Пример использования в скриптах: if [[ -d /tmp ]]; then echo "dir 'tmp' is exist"; else echo "dir 'tmp' not exist"; fi
-14.     cd /tmp
+11.  конструкция [[ -d /tmp ]] проверяет наличие каталога tmp. Возращает истину или ложь.
+     0 - возращается в случае успешного выполнения команды!
+     значение отличное от 0 - код ошибки или признак НЕуспешного выполнения:
+     		aleksturbo@AlksTrbNout:/$ direxist=$([[ -d /tmp ]])
+		aleksturbo@AlksTrbNout:/$ echo $?
+		0 #успесшное выполнение - каталог присутствует
+		aleksturbo@AlksTrbNout:/$ direxist=$([[ -d /temp ]])
+		aleksturbo@AlksTrbNout:/$ echo $?
+		1 #НЕуспесшное выполнение - каталог отсутствует
+       Пример использования в скриптах: if [[ -d /tmp ]]; then echo "dir 'tmp' is exist"; else echo "dir 'tmp' not exist"; fi
+12.     cd /tmp
 	mkdir new_path_directory 
 	cp -p /bin/bash /tmp/new_path_directory/bash
 	PATH=/tmp/new_path_directory:$PATH
