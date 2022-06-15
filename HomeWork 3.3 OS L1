@@ -1,1 +1,0 @@
-aleksturbo@AlksTrbNout:/tmp$ strace /bin/bash -c 'cd /tmp' #запрос
