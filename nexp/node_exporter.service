@@ -1,0 +1,14 @@
+[Unit]
+Description=Node_Exporter
+After=network-online.target
+ 
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+EnvironmentFile=-/etc/node_exporter
+ExecStart=/usr/local/bin/node_exporter $EXT_OPTS
+EnvironmentFile=/etc/default/node_exporter
+ 
+[Install]
+WantedBy=multi-user.target    
