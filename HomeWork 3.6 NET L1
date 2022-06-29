@@ -1,0 +1,27 @@
+1. aleksturbo@AlksTrbNout:~$ telnet
+   telnet> open stackoverflow.com 80
+      Trying 151.101.129.69...
+      Connected to stackoverflow.com.
+      Escape character is '^]'.
+   GET /questions HTTP/1.0
+   HOST: stackoverflow.com
+
+      HTTP/1.1 301 Moved Permanently
+      cache-control: no-cache, no-store, must-revalidate
+      location: https://stackoverflow.com/questions
+      x-request-guid: 352a2c92-9ff7-4019-83c7-261e5f8b4097
+      feature-policy: microphone 'none'; speaker 'none'
+      content-security-policy: upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com
+      Accept-Ranges: bytes
+      Date: Wed, 29 Jun 2022 12:46:42 GMT
+      Via: 1.1 varnish
+      Connection: close
+      X-Served-By: cache-fra19122-FRA
+      X-Cache: MISS
+      X-Cache-Hits: 0
+      X-Timer: S1656506801.895018,VS0,VE1352
+      Vary: Fastly-SSL
+      X-DNS-Prefetch-Control: off
+      Set-Cookie: prov=709e24c6-e738-0a59-fff5-6a947e806a96; domain=.stackoverflow.com; expires=Fri, 01-Jan-2055 00:00:00 GMT; path=/; HttpOnly
+ 2. http://stackoverflow.com/
+    
