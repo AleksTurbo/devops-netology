@@ -24,4 +24,36 @@
       X-DNS-Prefetch-Control: off
       Set-Cookie: prov=709e24c6-e738-0a59-fff5-6a947e806a96; domain=.stackoverflow.com; expires=Fri, 01-Jan-2055 00:00:00 GMT; path=/; HttpOnly
  2. http://stackoverflow.com/
-    
+      DevTools F12:
+         1.URL запроса: http://stackoverflow.com/
+            Метод запроса: GET
+            Код статуса: 307 Internal Redirect
+            Правило для URL перехода: strict-origin-when-cross-origin
+         Ответ:
+            Cross-Origin-Resource-Policy: Cross-Origin
+            Location: https://stackoverflow.com/
+            Non-Authoritative-Reason: HSTS
+         2. URL запроса: https://stackoverflow.com/
+               Метод запроса: GET
+               Код статуса: 200 
+               Удаленный адрес: 151.101.193.69:443
+               Правило для URL перехода: strict-origin-when-cross-origin
+            Ответ:
+               accept-ranges: bytes
+               cache-control: private
+               content-encoding: gzip
+               content-security-policy: upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com
+               content-type: text/html; charset=utf-8
+               date: Wed, 29 Jun 2022 12:51:52 GMT
+               feature-policy: microphone 'none'; speaker 'none'
+               strict-transport-security: max-age=15552000
+               vary: Accept-Encoding,Fastly-SSL
+               via: 1.1 varnish
+               x-cache: MISS
+               x-cache-hits: 0
+               x-dns-prefetch-control: off
+               x-frame-options: SAMEORIGIN
+               x-request-guid: 780c4d12-0e68-4432-b8d0-9a9f3bba8952
+               x-served-by: cache-fra19122-FRA
+               x-timer: S1656507112.141696,VS0,VE285
+3. 
