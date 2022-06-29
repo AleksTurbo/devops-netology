@@ -173,60 +173,15 @@
          23. (waiting for reply)
          24. AS15169  dns.google                                                         0.0%    88   36.7  36.2  35.9  40.0   0.5
 
-7. root@pve:~# dig +trace dns.google
+7. root@pve:~# dig +short NS dns.google
+      ns3.zdns.google.
+      ns2.zdns.google.
+      ns4.zdns.google.
+      ns1.zdns.google.
 
-      ; <<>> DiG 9.16.22-Debian <<>> +trace dns.google
-      ;; global options: +cmd
-.                       13629   IN      NS      b.root-servers.net.
-.                       13629   IN      NS      g.root-servers.net.
-.                       13629   IN      NS      m.root-servers.net.
-.                       13629   IN      NS      f.root-servers.net.
-.                       13629   IN      NS      j.root-servers.net.
-.                       13629   IN      NS      k.root-servers.net.
-.                       13629   IN      NS      e.root-servers.net.
-.                       13629   IN      NS      c.root-servers.net.
-.                       13629   IN      NS      l.root-servers.net.
-.                       13629   IN      NS      a.root-servers.net.
-.                       13629   IN      NS      h.root-servers.net.
-.                       13629   IN      NS      i.root-servers.net.
-.                       13629   IN      NS      d.root-servers.net.
-.                       13629   IN      NS      g.root-servers.net.
-.                       13629   IN      NS      m.root-servers.net.
-.                       13629   IN      NS      f.root-servers.net.
-.                       13629   IN      NS      j.root-servers.net.
-.                       13629   IN      NS      k.root-servers.net.
-.                       13629   IN      NS      e.root-servers.net.
-.                       13629   IN      NS      c.root-servers.net.
-.                       13629   IN      NS      l.root-servers.net.
-.                       13629   IN      NS      a.root-servers.net.
-.                       13629   IN      NS      h.root-servers.net.
-.                       13629   IN      NS      i.root-servers.net.
-.                       13629   IN      NS      d.root-servers.net.
-.                       13629   IN      NS      b.root-servers.net.
-      ;; Received 397 bytes from 192.168.153.1#53(192.168.153.1) in 0 ms
-
-      google.                 172800  IN      NS      ns-tld1.charlestonroadregistry.com.
-      google.                 172800  IN      NS      ns-tld2.charlestonroadregistry.com.
-      google.                 172800  IN      NS      ns-tld3.charlestonroadregistry.com.
-      google.                 172800  IN      NS      ns-tld4.charlestonroadregistry.com.
-      google.                 172800  IN      NS      ns-tld5.charlestonroadregistry.com.
-      google.                 86400   IN      DS      6125 8 2 80F8B78D23107153578BAD3800E9543500474E5C30C29698B40A3DB2 3ED9DA9F
-      google.                 86400   IN      RRSIG   DS 8 1 86400 20220712050000 20220629040000 47671 
-      ;; Received 730 bytes from 199.7.91.13#53(d.root-servers.net) in 52 ms
-
-      dns.google.             10800   IN      NS      ns2.zdns.google.
-      dns.google.             10800   IN      NS      ns1.zdns.google.
-      dns.google.             10800   IN      NS      ns3.zdns.google.
-      dns.google.             10800   IN      NS      ns4.zdns.google.
-      dns.google.             3600    IN      DS      56044 8 2 1B0A7E90AA6B1AC65AA5B573EFC44ABF6CB2559444251B997103D2E4 0C351B08
-      dns.google.             3600    IN      RRSIG   DS 8 2 3600 20220718150848 20220626150848 65523 google. 
-      ;; Received 506 bytes from 216.239.38.105#53(ns-tld4.charlestonroadregistry.com) in 44 ms
-
-   A запись =>   dns.google.             900     IN      A       8.8.4.4
-   A запись =>   dns.google.             900     IN      A       8.8.8.8
-                  dns.google.             900     IN      RRSIG   A 8 2 900 20220717234849 20220625234849 38211 dns.google. 
-                  ;; Received 241 bytes from 216.239.38.114#53(ns4.zdns.google) in 40 ms
-
+   root@pve:~# dig +short A dns.google
+      8.8.8.8
+      8.8.4.4
  
 8. root@pve:~# dig -x 8.8.8.8
       ;; QUESTION SECTION:
@@ -238,3 +193,5 @@
       ;4.4.8.8.in-addr.arpa.          IN      PTR
       ;; ANSWER SECTION:
       4.4.8.8.in-addr.arpa.   52030   IN      PTR     dns.google.
+
+   dns.google
