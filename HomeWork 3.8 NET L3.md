@@ -141,4 +141,4 @@
 
     323 - приложение chrony
 
-## 5.  DrawIO - (см.)
+## 5.  DrawIO - https://github.com/AleksTurbo/devops-netology/blob/main/AlksTrmLAN.drawio.png?raw=true
