@@ -309,7 +309,7 @@
         More information can be found at https://github.com/chef/bento
         Last login: Sun Jul 17 18:43:36 2022 from 192.168.56.50
 
- ## 7. Wireshark
+ ## 7. Wireshark https://github.com/AleksTurbo/devops-netology/blob/main/Wireshark.png
     vagrant@control:~$ sudo tcpdump -nnei any -c 100 -w 100packets.pcap
         tcpdump: listening on any, link-type LINUX_SLL (Linux cooked v1), capture size 262144 bytes
         100 packets captured
@@ -317,6 +317,6 @@
         0 packets dropped by kernel
     
     vagrant@control:~$ sudo cp 100packets.pcap /vagrant/100packets.pcap
-    https://github.com/AleksTurbo/devops-netology/blob/main/Wireshark.png
     
+
 
