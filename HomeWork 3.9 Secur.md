@@ -317,5 +317,5 @@
         0 packets dropped by kernel
     
     vagrant@control:~$ sudo cp 100packets.pcap /vagrant/100packets.pcap
-
+    https://github.com/AleksTurbo/devops-netology/blob/main/Wireshark.png
     
