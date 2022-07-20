@@ -52,12 +52,12 @@
 
     ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
 
-    a2enmod ssl
-    a2enmod headers
-    apache2ctl configtest
-    systemctl restart apache2
+'a2enmod ssl'
+'a2enmod headers'
+'apache2ctl configtest'
+'systemctl restart apache2'
 
-    ![Apache2SSL](https://github.com/AleksTurbo/devops-netology/blob/main/Apache2SSL.png "Apache2SSL")
+![Apache2SSL](https://github.com/AleksTurbo/devops-netology/blob/main/Apache2SSL.png "Apache2SSL")
 
  ## 4. TLS 
     apt install sslscan
