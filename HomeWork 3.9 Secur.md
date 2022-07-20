@@ -1,10 +1,10 @@
 # Домашняя работа  к занятию "3.9. Элементы безопасности информационных систем"
 
 ## 1. Bitwarden плагин: 
-<https://github.com/AleksTurbo/devops-netology/blob/main/PluginBitwarden.png>
+![Bitwarden плагин](https://github.com/AleksTurbo/devops-netology/blob/main/PluginBitwarden.png "Bitwarden плагин")
 
 ## 2. Bitwarden 2 factor autoruty: 
-<https://github.com/AleksTurbo/devops-netology/blob/main/Bitwarden2FactorAutority.png>
+![Bitwarden 2 factor autoruty](https://github.com/AleksTurbo/devops-netology/blob/main/Bitwarden2FactorAutority.png "Bitwarden 2 factor autoruty")
 
 ## 3. Apache2 
     root@pve:~# apt install apache2
@@ -320,5 +320,5 @@
     
     vagrant@control:~$ sudo cp 100packets.pcap /vagrant/100packets.pcap
     
-<https://github.com/AleksTurbo/devops-netology/blob/main/Wireshark.png>
+![Wireshark](https://github.com/AleksTurbo/devops-netology/blob/main/Wireshark.png "Wireshark")
 
