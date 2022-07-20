@@ -1,8 +1,10 @@
 # Домашняя работа  к занятию "3.9. Элементы безопасности информационных систем"
 
-## 1. Bitwarden плагин: https://github.com/AleksTurbo/devops-netology/blob/main/PluginBitwarden.png
+## 1. Bitwarden плагин: 
+<https://github.com/AleksTurbo/devops-netology/blob/main/PluginBitwarden.png>
 
-## 2. Bitwarden 2 factor autoruty: https://github.com/AleksTurbo/devops-netology/blob/main/Bitwarden2FactorAutority.png
+## 2. Bitwarden 2 factor autoruty: 
+<https://github.com/AleksTurbo/devops-netology/blob/main/Bitwarden2FactorAutority.png>
 
 ## 3. Apache2 
     root@pve:~# apt install apache2
@@ -55,7 +57,7 @@
     apache2ctl configtest
     systemctl restart apache2
 
-    https://github.com/AleksTurbo/devops-netology/blob/main/Apache2SSL.png
+    <https://github.com/AleksTurbo/devops-netology/blob/main/Apache2SSL.png>
 
  ## 4. TLS 
     apt install sslscan
@@ -309,7 +311,7 @@
         More information can be found at https://github.com/chef/bento
         Last login: Sun Jul 17 18:43:36 2022 from 192.168.56.50
 
- ## 7. Wireshark https://github.com/AleksTurbo/devops-netology/blob/main/Wireshark.png
+ ## 7. Wireshark 
     vagrant@control:~$ sudo tcpdump -nnei any -c 100 -w 100packets.pcap
         tcpdump: listening on any, link-type LINUX_SLL (Linux cooked v1), capture size 262144 bytes
         100 packets captured
@@ -318,5 +320,5 @@
     
     vagrant@control:~$ sudo cp 100packets.pcap /vagrant/100packets.pcap
     
-
+<https://github.com/AleksTurbo/devops-netology/blob/main/Wireshark.png>
 
