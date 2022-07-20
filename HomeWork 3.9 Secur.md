@@ -11,9 +11,9 @@
 root@pve:~# apt install apache2
 root@pve:~# openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 ```        
-        Generating a RSA private key
-        .............+++++
-        ................+++++
+        Generating a RSA private key <br>
+        .............+++++<br>
+        ................+++++<br>
         writing new private key to '/etc/ssl/private/apache-selfsigned.key'
 
 ```bash
