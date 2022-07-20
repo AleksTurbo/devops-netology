@@ -7,15 +7,18 @@
 ![Bitwarden 2 factor autoruty](https://github.com/AleksTurbo/devops-netology/blob/main/Bitwarden2FactorAutority.png "Bitwarden 2 factor autoruty")
 
 ## 3. Apache2 
-```root@pve:~# apt install apache2```
-```openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt```
-        
+```bash
+root@pve:~# apt install apache2
+root@pve:~# openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+```        
         Generating a RSA private key
         .............+++++
         ................+++++
         writing new private key to '/etc/ssl/private/apache-selfsigned.key'
 
-```nano /etc/apache2/conf-available/ssl-params.conf```
+```bash
+root@pve:~# nano /etc/apache2/conf-available/ssl-params.conf
+```
         SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
         SSLProtocol All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
         SSLHonorCipherOrder On
@@ -63,7 +66,7 @@
 
  ## 4. TLS 
 ```apt install sslscan```<br>
-    ```sslscan https://aleksturbo.sytes.net```
+```sslscan https://aleksturbo.sytes.net```
 
         Version: 2.0.7
         OpenSSL 1.1.1n  15 Mar 2022
