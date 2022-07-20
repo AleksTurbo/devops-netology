@@ -1,9 +1,9 @@
 # Домашняя работа  к занятию "3.9. Элементы безопасности информационных систем"
 
-## 1. Bitwarden плагин: 
+## 1. Bitwarden плагин установлен: 
 ![Bitwarden плагин](https://github.com/AleksTurbo/devops-netology/blob/main/PluginBitwarden.png "Bitwarden плагин")
 
-## 2. Bitwarden 2 factor autoruty: 
+## 2. Bitwarden 2 factor autoruty включено: 
 ![Bitwarden 2 factor autoruty](https://github.com/AleksTurbo/devops-netology/blob/main/Bitwarden2FactorAutority.png "Bitwarden 2 factor autoruty")
 
 ## 3. Apache2 
@@ -57,7 +57,7 @@
     apache2ctl configtest
     systemctl restart apache2
 
-    <https://github.com/AleksTurbo/devops-netology/blob/main/Apache2SSL.png>
+    ![Apache2SSL](https://github.com/AleksTurbo/devops-netology/blob/main/Apache2SSL.png "Apache2SSL")
 
  ## 4. TLS 
     apt install sslscan
