@@ -7,14 +7,15 @@
 ![Bitwarden 2 factor autoruty](https://github.com/AleksTurbo/devops-netology/blob/main/Bitwarden2FactorAutority.png "Bitwarden 2 factor autoruty")
 
 ## 3. Apache2 
-    root@pve:~# apt install apache2
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+```root@pve:~# apt install apache2```
+```openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt```
+        
         Generating a RSA private key
         .............+++++
         ................+++++
         writing new private key to '/etc/ssl/private/apache-selfsigned.key'
 
-    nano /etc/apache2/conf-available/ssl-params.conf
+```nano /etc/apache2/conf-available/ssl-params.conf```
         SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH
         SSLProtocol All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
         SSLHonorCipherOrder On
@@ -25,9 +26,10 @@
         SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
         SSLSessionTickets Off
     
-    ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
+```ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf```
 
-    nano /etc/apache2/sites-available/default-ssl.conf
+```nano /etc/apache2/sites-available/default-ssl.conf```
+
         <IfModule mod_ssl.c>
             <VirtualHost _default_:443>
                 ServerAdmin webmaster@localhost
@@ -50,18 +52,19 @@
             </VirtualHost>
         </IfModule>
 
-    ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf
+```ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/default-ssl.conf```
 
-'a2enmod ssl'
-'a2enmod headers'
-'apache2ctl configtest'
-'systemctl restart apache2'
+```a2enmod ssl```<br>
+```a2enmod headers```<br>
+```apache2ctl configtest```<br>
+    ```systemctl restart apache2```
 
 ![Apache2SSL](https://github.com/AleksTurbo/devops-netology/blob/main/Apache2SSL.png "Apache2SSL")
 
  ## 4. TLS 
-    apt install sslscan
-    sslscan https://aleksturbo.sytes.net
+```apt install sslscan```<br>
+    ```sslscan https://aleksturbo.sytes.net```
+
         Version: 2.0.7
         OpenSSL 1.1.1n  15 Mar 2022
 
@@ -194,9 +197,11 @@
         Not valid after:  Oct  9 18:00:51 2022 GMT
 
  ## 5. ssh
-    vagrant up
-    vagrant ssh control
-    vagrant@control:~$ ssh-keygen
+```vagrant up```
+```vagrant ssh control```
+
+```vagrant@control:~$ ssh-keygen```
+
     Generating public/private rsa key pair.
         Enter file in which to save the key (/home/vagrant/.ssh/id_rsa): 
         /home/vagrant/.ssh/id_rsa already exists.
@@ -219,7 +224,9 @@
         |..o+.=+o         |
         |++o.*o+.         |
         +----[SHA256]-----+
-    vagrant@control:~$ ssh-copy-id node1 && ssh-copy-id node2 && ssh-copy-id node3
+
+```vagrant@control:~$ ssh-copy-id node1 && ssh-copy-id node2 && ssh-copy-id node3```
+
         /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/vagrant/.ssh/id_rsa.pub"
         /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
         /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
@@ -250,7 +257,8 @@
         Now try logging into the machine, with:   "ssh 'node3'"
         and check to make sure that only the key(s) you wanted were added.
 
-        vagrant@control:~$ ssh vagrant@node1
+```vagrant@control:~$ ssh vagrant@node1```
+
             Welcome to Ubuntu 20.10 (GNU/Linux 5.8.0-63-generic x86_64)
 
             * Documentation:  https://help.ubuntu.com
@@ -277,15 +285,18 @@
             Last login: Mon May 16 18:48:20 2022 from 192.168.56.50
             vagrant@node1:~$ 
  ## 6. ssh node
-    vagrant@control:~$ mv ~/.ssh/id_rsa ~/.ssh/id_rsa_node
-    vagrant@control:~$ sudo nano ~/.ssh/config
+
+```vagrant@control:~$ mv ~/.ssh/id_rsa ~/.ssh/id_rsa_node```
+```vagrant@control:~$ sudo nano ~/.ssh/config```
+
         Host node1
         HostName 192.168.56.51
         User vagrant
         Port 22
         IdentityFile ~/.ssh/id_rsa_node
    
-    vagrant@control:~$ ssh node1
+```vagrant@control:~$ ssh node1```
+
         Welcome to Ubuntu 20.10 (GNU/Linux 5.8.0-63-generic x86_64)
 
         * Documentation:  https://help.ubuntu.com
@@ -312,13 +323,14 @@
         Last login: Sun Jul 17 18:43:36 2022 from 192.168.56.50
 
  ## 7. Wireshark 
-    vagrant@control:~$ sudo tcpdump -nnei any -c 100 -w 100packets.pcap
+```vagrant@control:~$ sudo tcpdump -nnei any -c 100 -w 100packets.pcap```
+
         tcpdump: listening on any, link-type LINUX_SLL (Linux cooked v1), capture size 262144 bytes
         100 packets captured
         108 packets received by filter
         0 packets dropped by kernel
     
-    vagrant@control:~$ sudo cp 100packets.pcap /vagrant/100packets.pcap
+```vagrant@control:~$ sudo cp 100packets.pcap /vagrant/100packets.pcap```
     
 ![Wireshark](https://github.com/AleksTurbo/devops-netology/blob/main/Wireshark.png "Wireshark")
 
