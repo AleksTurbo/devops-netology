@@ -200,12 +200,15 @@ root@pve:~# nano /etc/apache2/conf-available/ssl-params.conf
         Not valid after:  Oct  9 18:00:51 2022 GMT
 
  ## 5. ssh
-```vagrant up```
-```vagrant ssh control```
+```powershell
+PS D:\netology\vagrant>vagrant up
+PS D:\netology\vagrant>vagrant ssh control
+```
+```bash
+vagrant@control:~$ ssh-keygen
+```
 
-```vagrant@control:~$ ssh-keygen```
-
-    Generating public/private rsa key pair.
+        Generating public/private rsa key pair.
         Enter file in which to save the key (/home/vagrant/.ssh/id_rsa): 
         /home/vagrant/.ssh/id_rsa already exists.
         Overwrite (y/n)? y
@@ -228,7 +231,9 @@ root@pve:~# nano /etc/apache2/conf-available/ssl-params.conf
         |++o.*o+.         |
         +----[SHA256]-----+
 
-```vagrant@control:~$ ssh-copy-id node1 && ssh-copy-id node2 && ssh-copy-id node3```
+```bash
+vagrant@control:~$ ssh-copy-id node1 && ssh-copy-id node2 && ssh-copy-id node3
+```
 
         /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/vagrant/.ssh/id_rsa.pub"
         /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
@@ -260,7 +265,9 @@ root@pve:~# nano /etc/apache2/conf-available/ssl-params.conf
         Now try logging into the machine, with:   "ssh 'node3'"
         and check to make sure that only the key(s) you wanted were added.
 
-```vagrant@control:~$ ssh vagrant@node1```
+```bash
+vagrant@control:~$ ssh vagrant@node1
+```
 
             Welcome to Ubuntu 20.10 (GNU/Linux 5.8.0-63-generic x86_64)
 
@@ -286,11 +293,13 @@ root@pve:~# nano /etc/apache2/conf-available/ssl-params.conf
             This system is built by the Bento project by Chef Software
             More information can be found at https://github.com/chef/bento
             Last login: Mon May 16 18:48:20 2022 from 192.168.56.50
-            vagrant@node1:~$ 
+            
  ## 6. ssh node
 
-```vagrant@control:~$ mv ~/.ssh/id_rsa ~/.ssh/id_rsa_node```
-```vagrant@control:~$ sudo nano ~/.ssh/config```
+```bash
+vagrant@control:~$ mv ~/.ssh/id_rsa ~/.ssh/id_rsa_node
+vagrant@control:~$ sudo nano ~/.ssh/config
+```
 
         Host node1
         HostName 192.168.56.51
@@ -298,7 +307,9 @@ root@pve:~# nano /etc/apache2/conf-available/ssl-params.conf
         Port 22
         IdentityFile ~/.ssh/id_rsa_node
    
-```vagrant@control:~$ ssh node1```
+```bash
+vagrant@control:~$ ssh node1
+```
 
         Welcome to Ubuntu 20.10 (GNU/Linux 5.8.0-63-generic x86_64)
 
@@ -326,14 +337,18 @@ root@pve:~# nano /etc/apache2/conf-available/ssl-params.conf
         Last login: Sun Jul 17 18:43:36 2022 from 192.168.56.50
 
  ## 7. Wireshark 
-```vagrant@control:~$ sudo tcpdump -nnei any -c 100 -w 100packets.pcap```
+```bash
+vagrant@control:~$ sudo tcpdump -nnei any -c 100 -w 100packets.pcap
+```
 
         tcpdump: listening on any, link-type LINUX_SLL (Linux cooked v1), capture size 262144 bytes
         100 packets captured
         108 packets received by filter
         0 packets dropped by kernel
     
-```vagrant@control:~$ sudo cp 100packets.pcap /vagrant/100packets.pcap```
+```bash
+vagrant@control:~$ sudo cp 100packets.pcap /vagrant/100packets.pcap
+```
     
 ![Wireshark](https://github.com/AleksTurbo/devops-netology/blob/main/Wireshark.png "Wireshark")
 
