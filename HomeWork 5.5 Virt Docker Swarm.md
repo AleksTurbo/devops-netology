@@ -30,7 +30,8 @@ Global - сервис разворачивается обязательно на
 Overlay-сеть создает подсеть, которую могут использовать контейнеры в разных хостах swarm-кластера. 
 Контейнеры на разных физических хостах могут обмениваться данными по overlay-сети (если все они прикреплены к одной сети). 
 Overlay-сеть использует технологию vxlan, которая инкапсулирует layer 2 фреймы в layer 4 пакеты (UDP/IP). 
-При помощи этого действия Docker создает виртуальные сети поверх существующих связей между хостами, которые могут оказаться внутри одной подсети. 
+При помощи этого действия Docker создает виртуальные сети поверх существующих связей между хостами, которые могут оказаться 
+внутри одной подсети. 
 Любые точки, которые являются частью этой виртуальной сети, выглядят друг для друга так, будто они связаны поверх свича и 
 не заботятся об устройстве основной физической сети. 
 vxlan использует udp port 4789.
@@ -40,13 +41,16 @@ vxlan использует udp port 4789.
 
 Создаем Docker Swarm кластер в Яндекс.Облаке:
 
-![YC node 1 VM](https://github.com/AleksTurbo/devops-netology/blob/main/YC%20node%201%20VM.png "YC node 1 VM")
+![Virt 5.5 TF+Ansbl deploy 6 VM](https://github.com/AleksTurbo/devops-netology/blob/main/Virt%205.5%20TF%2BAnsbl%20deploy%206%20VM.png "Virt 5.5 TF+Ansbl deploy 6 VM")
+![Virt 5.5 TF+Ansbl  - docker node ls](https://github.com/AleksTurbo/devops-netology/blob/main/Virt%205.5%20TF%2BAnsbl%20%20-%20docker%20node%20ls%20.png "Virt 5.5 TF+Ansbl  - docker node ls")
 
 ## Задача 3
 
 Создаем кластер мониторинга, состоящий из стека микросервисов:
-![Grafana metrics node1](https://github.com/AleksTurbo/devops-netology/blob/main/Grafana%20metrics%20node1.png "Grafana metrics node1")
+![Virt 5.5 TF+Ansbl  - docker services ls](https://github.com/AleksTurbo/devops-netology/blob/main/Virt%205.5%20TF%2BAnsbl%20%20-%20docker%20services%20ls%20.png "Virt 5.5 TF+Ansbl  - docker services ls ")
 
 ## Задача 4
 
 Выполним на лидере Docker Swarm кластера команду: docker swarm update --autolock=true
+
+![Virt 5.5 TF+Ansbl swarm lock](https://github.com/AleksTurbo/devops-netology/blob/main/Virt%205.5%20TF%2BAnsbl%20swarm%20lock.png "Virt 5.5 TF+Ansbl swarm lock")
