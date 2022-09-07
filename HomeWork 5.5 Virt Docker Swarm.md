@@ -48,9 +48,15 @@ vxlan использует udp port 4789.
 
 Создаем кластер мониторинга, состоящий из стека микросервисов:
 ![Virt 5.5 TF+Ansbl  - docker services ls](https://github.com/AleksTurbo/devops-netology/blob/main/Virt%205.5%20TF%2BAnsbl%20%20-%20docker%20services%20ls%20.png "Virt 5.5 TF+Ansbl  - docker services ls ")
+![Virt 5.5 TF+Ansbl Grafana swarm services](https://github.com/AleksTurbo/devops-netology/blob/main/Virt%205.5%20TF%2BAnsbl%20Grafana%20swarm%20services.png "Virt 5.5 TF+Ansbl Grafana swarm services")
 
 ## Задача 4
 
 Выполним на лидере Docker Swarm кластера команду: docker swarm update --autolock=true
 
 ![Virt 5.5 TF+Ansbl swarm lock](https://github.com/AleksTurbo/devops-netology/blob/main/Virt%205.5%20TF%2BAnsbl%20swarm%20lock.png "Virt 5.5 TF+Ansbl swarm lock")
+
+```txt
+--autolock=true опция требовать ввода ключа разблокировки на ноде, чтобы она могла заново присоединиться к кластеру, если была перезапущена. Ввод ключа позволит расшифровать лог Raft и загрузить все "секреты" в память ноды (логины, пароли, TLS ключи, SSH ключи и т.д.)
+Для защиты кластера от несанкционированного доступа к файлам ноды. Например, получив жесткий диск сервера или образ диска VM с нодой, не получить доступ к кластеру и нодам без ключа.
+```
