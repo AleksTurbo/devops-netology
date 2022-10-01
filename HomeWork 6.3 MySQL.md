@@ -312,11 +312,7 @@ mysql> SHOW PROFILES;
 |        2 | 0.07635600 | ALTER TABLE orders ENGINE = InnoDB |
 +----------+------------+------------------------------------+
 2 rows in set, 1 warning (0.00 sec)
-```
-
-
-
-## Задача 4
+```## Задача 4
 
 Переконфигурируем MySQL:
 
@@ -358,6 +354,7 @@ COPY ./cfg/my.cnf /etc/mysql/
 ```
 
 - my.cnf:
+
 ```ini
 [mysqld]
 
