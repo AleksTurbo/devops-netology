@@ -147,5 +147,3 @@ test> db.killOp(93882)
     - shared_buffer
     - work_mem
     - effective_cache_size
-    
-
