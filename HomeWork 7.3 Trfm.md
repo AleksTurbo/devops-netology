@@ -59,7 +59,11 @@ aleksturbo@AlksTrbNoute:~/terraform73$ terraform workspace list
   stage
 ```
 
-3. 4. 5. 6. 7. 
+3.
+4.
+5.
+6.
+7.
 
 Подготавливаем манифесты terraform со следующей логикой:
     - количество инстансов зависит от workspace: для prod - 2, для stage-1
