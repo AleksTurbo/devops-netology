@@ -65,6 +65,8 @@ aleksturbo@AlksTrbNoute:~/terraform73$ terraform workspace list
     - количество инстансов зависит от workspace: для prod - 2, для stage-1
     - зависимость типа инстанса от workspace
 
+[terraform files](https://github.com/AleksTurbo/devops-netology/tree/main/terraform/hw73)
+
 Вывод имеющихся workspace:
 
 ```bash
@@ -74,4 +76,6 @@ aleksturbo@AlksTrbNoute:~/terraform73$ terraform workspace list
   stage
 ```
 
-Вывод команды terraform plan для воркспейса prod: <output-tf-plan>
+![73-tf-yc-wm-list](img/73-tf-yc-wm-list.png)
+
+Вывод команды terraform plan для воркспейса prod: [output-tf-plan](https://github.com/AleksTurbo/devops-netology/blob/main/terraform/hw73/output-tf-plan.txt)
