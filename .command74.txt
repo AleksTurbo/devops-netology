@@ -1,0 +1,3 @@
+token                    = y0_AgAAAAAALAIvAATuwQAAAADN2L8Q6f2rgrs1TvaVhRT2XaZDNYDY5MU
+
+terraform plan -var "do_token=${y0_AgAAAAAALAIvAATuwQAAAADN2L8Q6f2rgrs1TvaVhRT2XaZDNYDY5MU}"
