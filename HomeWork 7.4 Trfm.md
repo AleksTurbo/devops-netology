@@ -19,4 +19,9 @@
 
 ## Задача 3 - Знакомство с каталогом модулей.
 
-1. Модуль terraform для  yandex-cloud (v. 0.81.0) - <https://registry.terraform.io/providers/yandex-cloud/yandex/0.81.0>
+1. Модуль terraform для  yandex-cloud (v. 0.81.0) отсутствует! - <https://registry.terraform.io/providers/yandex-cloud/yandex/0.81.0>
+  ![YC modul](img/TrfmCoud-HW7.4-yc-modul.png)
+
+2. Использовать в проекте данный модуль пока не представляется возможным.
+
+3. Создать аналогичный инстанс при помощи найденного модуля не представляется возможным.
