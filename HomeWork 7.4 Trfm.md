@@ -8,4 +8,10 @@
 4. Выполняем plan и apply:
   ![plan и apply](img/TrfmCoud-HW7.4.png)
 
-## Задача 2
+## Задача 2 - Работаем с ATLANTIS
+
+1. Подготавливаем конфигурационные файлы:
+  ![atlantis plan](img/TrfmCoud-HW7.4 atlantis file.png)
+  
+2. Проверяем функциональность:
+  ![atlantis plan](img/TrfmCoud-HW7.4 atlantis.png)

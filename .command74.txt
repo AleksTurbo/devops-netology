@@ -1,3 +1,10 @@
 token                    = y0_AgAAAAAALAIvAATuwQAAAADN2L8Q6f2rgrs1TvaVhRT2XaZDNYDY5MU
 
 terraform plan -var "do_token=${y0_AgAAAAAALAIvAATuwQAAAADN2L8Q6f2rgrs1TvaVhRT2XaZDNYDY5MU}"
+
+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
+
+2GXtx7cLWIB4GsnPUXEKMz02hGN_3CtiPJUAyYuRbwAqZuVyW
+
+atlantis version
+atlantis plan
