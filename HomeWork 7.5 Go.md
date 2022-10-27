@@ -172,3 +172,6 @@ func TestMain(err *testing.T) {
 PS C:\gopath\3> go test DividedByThree.go DividedByThree_test.go
 ok      command-line-arguments  0.277s
 ```
+
+*****************
+[Go file dir:](https://github.com/AleksTurbo/devops-netology/tree/main/golang)
