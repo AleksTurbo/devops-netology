@@ -423,4 +423,4 @@ aleksturbo@AlksTrbNoute:~/terraform-provider-hashicups/examples$ curl -X GET  -H
 ```
 
 
-8. 
+8. [Исходный код](https://github.com/AleksTurbo/devops-netology/tree/main/terraform/hw76)
