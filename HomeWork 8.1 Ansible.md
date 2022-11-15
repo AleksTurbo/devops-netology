@@ -340,3 +340,243 @@ centos7                    : ok=4    changed=0    unreachable=0    failed=0    s
 localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ubuntu                     : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
+
+## Дополнительная часть
+
+1. Расшифруем все зашифрованные файлы:
+
+```bash
+aleksturbo@AlksTrbNoute:~/ansible81$ ansible-vault decrypt --ask-vault-password group_vars/deb/* group_vars/el/*
+Vault password: 
+Decryption successful
+
+aleksturbo@AlksTrbNoute:~/ansible81$ cat group_vars/deb/examp.yml 
+---
+  some_fact: "deb default fact"
+```
+
+2. Зашифруем отдельное значение PaSSw0rd для переменной some_fact:
+
+```bash
+aleksturbo@AlksTrbNoute:~/ansible81$ ansible-vault encrypt_string "PaSSw0rd"d"
+New Vault password: 
+Confirm New Vault password: 
+!vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          31613632666362636131626265386332663937633138663365316166386435383033326465323262
+          3663346333306532326362366434366664613961666133370a383238643331343866353338306632
+          37366636376639396637613363343233306131323739326637343766643334643062343362346136
+          3036613439616361340a396634623631636365313162313036326264376235623564366430613131
+          3062
+Encryption successful
+
+aleksturbo@AlksTrbNoute:~/ansible81$ cat group_vars/all/examp.yml
+---
+  some_fact: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          31613632666362636131626265386332663937633138663365316166386435383033326465323262
+          3663346333306532326362366434366664613961666133370a383238643331343866353338306632
+          37366636376639396637613363343233306131323739326637343766643334643062343362346136
+          3036613439616361340a396634623631636365313162313036326264376235623564366430613131
+          3062
+```
+
+3. Запустим playbook с новым fact:
+
+```bash
+aleksturbo@AlksTrbNoute:~/ansible81$ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+Vault password: 
+
+PLAY [Print os facts] 
+
+TASK [Gathering Facts] 
+ok: [localhost]
+ok: [ubuntu]
+ok: [centos7]
+
+TASK [Print OS] 
+ok: [localhost] => {
+    "msg": "Ubuntu"
+}
+ok: [centos7] => {
+    "msg": "CentOS"
+}
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+
+TASK [Print version] 
+ok: [localhost] => {
+    "msg": "2.10.8"
+}
+ok: [centos7] => {
+    "msg": "2.10.8"
+}
+ok: [ubuntu] => {
+    "msg": "2.10.8"
+}
+
+TASK [Print fact] 
+ok: [localhost] => {
+    "msg": "PaSSw0rd"
+}
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+
+PLAY RECAP 
+centos7                    : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+ubuntu                     : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
+
+4. Добавим группу хостов fedora и fact для нее
+
+```bash
+aleksturbo@AlksTrbNoute:~/ansible81$ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+Vault password: 
+
+PLAY [Print os facts] 
+
+TASK [Gathering Facts] 
+ok: [localhost]
+ok: [fedora]
+ok: [ubuntu]
+ok: [centos7]
+
+TASK [Print OS] 
+ok: [localhost] => {
+    "msg": "Ubuntu"
+}
+ok: [centos7] => {
+    "msg": "CentOS"
+}
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+ok: [fedora] => {
+    "msg": "Fedora"
+}
+
+TASK [Print version] 
+ok: [localhost] => {
+    "msg": "2.10.8"
+}
+ok: [centos7] => {
+    "msg": "2.10.8"
+}
+ok: [ubuntu] => {
+    "msg": "2.10.8"
+}
+ok: [fedora] => {
+    "msg": "2.10.8"
+}
+
+TASK [Print fact] 
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [localhost] => {
+    "msg": "PaSSw0rd"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+ok: [fedora] => {
+    "msg": "fed default fact"
+}
+
+PLAY RECAP 
+centos7                    : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+fedora                     : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+ubuntu                     : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
+
+5. Напишем скрипт на bash: автоматизируем поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров:
+
+```bash
+aleksturbo@AlksTrbNoute:~/ansible81$ ./script.sh
++ echo '****STARTING***'
+****STARTING***
++ docker-compose up -d
+[+] Running 4/4
+ ⠿ Network ansible81_default  Created          0.8s
+ ⠿ Container fedora           Started          3.5s
+ ⠿ Container centos7          Started           4.2s
+ ⠿ Container ubuntu           Started           4.2s
++ echo '****DOCKER STARTING***'
+****DOCKER STARTING***
++ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+Vault password: 
+
+PLAY [Print os facts] 
+
+TASK [Gathering Facts] 
+ok: [fedora]
+ok: [localhost]
+ok: [ubuntu]
+ok: [centos7]
+
+TASK [Print OS] 
+ok: [localhost] => {
+    "msg": "Ubuntu"
+}
+ok: [centos7] => {
+    "msg": "CentOS"
+}
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+ok: [fedora] => {
+    "msg": "Fedora"
+}
+
+TASK [Print version] 
+ok: [localhost] => {
+    "msg": "2.10.8"
+}
+ok: [centos7] => {
+    "msg": "2.10.8"
+}
+ok: [ubuntu] => {
+    "msg": "2.10.8"
+}
+ok: [fedora] => {
+    "msg": "2.10.8"
+}
+
+TASK [Print fact] 
+ok: [localhost] => {
+    "msg": "PaSSw0rd"
+}
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+ok: [fedora] => {
+    "msg": "fed default fact"
+}
+
+PLAY RECAP 
+centos7                    : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+fedora                     : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+ubuntu                     : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
++ echo '****ANSIBLE WORKING***'
+****ANSIBLE WORKING***
++ docker-compose down -t 1
+[+] Running 4/4
+ ⠿ Container fedora           Removed                                                                                                                                                                                      0.5s
+ ⠿ Container centos7          Removed                                                                                                                                                                                      1.6s
+ ⠿ Container ubuntu           Removed                                                                                                                                                                                      0.7s
+ ⠿ Network ansible81_default  Removed                                                                                                                                                                                      0.7s
++ echo '****DOCKER STOPING***'
+****DOCKER STOPING***
+```

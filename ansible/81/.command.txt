@@ -6,3 +6,7 @@ ansible-vault encrypt group_vars/deb/examp.yml
 ansible-vault encrypt group_vars/el/examp.yml
 
 ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+
+ansible-vault decrypt --ask-vault-password group_vars/deb/* group_vars/el/*
+
+ansible-vault encrypt_string "PaSSw0rd"
