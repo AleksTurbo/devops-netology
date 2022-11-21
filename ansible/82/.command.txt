@@ -1,0 +1,108 @@
+docker-compose up -d
+grep -q sse4_2 /proc/cpuinfo && echo "SSE 4.2 supported" || echo "SSE 4.2 not supported"
+ansible-playbook -i inventory/prod.yml site.yml
+ansible-playbook -i inventory/prod.yml site2.yml
+            --extra-vars "ansible_sudo_pass=rootpass"
+ansible-playbook -i inventory/oracle.yml site2.yml
+ansible-playbook -i inventory/oracle.yml tasks/install/yum.yml
+ansible-playbook -i inventory/oracle.yml tasks/install/dnf.yml
+ansible-playbook -i inventory/oracle.yml tasks/precheck.yml
+ansible-playbook -i inventory/oracle.yml missingsudopassword_error.yml
+ansible-playbook -i inventory/prod.yml missingsudopassword_error.yml
+ansible-playbook -i inventory/prod.yml clickhouse.yaml 
+
+docker search centos
+
+ansible-vault encrypt group_vars/deb/examp.yml
+ansible-vault encrypt group_vars/el/examp.yml
+
+ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+
+ansible-vault decrypt --ask-vault-password group_vars/deb/* group_vars/el/*
+
+ansible-vault encrypt_string "PaSSw0rd"
+
+ansible-galaxy install -p roles -r requirements.yaml
+ansible-galaxy install -p roles -r requirements2.yaml
+ansible-galaxy install alexeysetevoi.clickhouse
+
+ansible-galaxy install alexeysetevoi.clickhouse
+
+docker exec -it clickhouse bash
+
+ssh clickhouse-01
+ssh vektor
+
+clickhouse-client -q 'create database logs;'
+ssh root@clickhouse-01
+ssh-copy-id -i /home/aleksturbo/.ssh/id_rsa.pub root@clickhouse-01
+ssh-copy-id root@clickhouse-01
+ssh-copy-id clickhouse-01
+ssh-copy-id remote_host
+ssh-keygen -f "/home/aleksturbo/.ssh/known_hosts" -R "clickhouse-01"
+
+
+useradd aleksturbo
+sudo useradd aleksturbo -G wheel -m
+usermod -a -G 
+usermod aleksturbo -G sudo
+usermod -a -G group aleksturbo
+usermod -g 0 -o aleksturbo
+usermod -aG wheel aleksturbo
+usermod -aG sudo aleksturbo
+e
+
+mkdir ~/.ssh
+cat ~/.ssh/id_rsa.pub
+sudo su aleksturbo
+
+
+
+echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3XD7uasY21QfLnb0CJd9heihglS0kQ3z5n4aYUnH/avBmcaVFEq6m2O1r2Hbk2/KTUEP/+FJ+70UvP+UPix9lGLQvAn6BKRLBz2bRSuqF5KohpslRauD+wuAxxnXVZPeCx5fPurYijrMCNqDaWxf36hb+Q5FNpEB6xcnGfNi+XsTOdyPmTu4LmIEdbC7/bAHtTdlGN+n6ToTjP9Auif6FUAQrSlCj8zWwJJUaD8ik4Yfrr5TZrx0KaWTVR3orbz6uFqrlMkIMHuscymh4NW7SZczAAunDDWugJeco36izRxv6TE717ox9aMgG+tdx3ON6luORk6cFLD2TtOVg0lDpXxM5B7xDLrz81BilLZObzs9qf9KJq7/aKMx9ipQ2LE1zMV77+owsneiFYrvZCtqfI03BdUIa6tZ1Qz0jYSNGFfo3T3OSZW31SKU876IOmKkmFnvbn1vGQS56eGs8+DV1OloJn6GY8BAO99Iy0KiD1O/cyqxJI6zEKZqWiE8Vd/0= aleksturbo@AlksTrbNoute' >> ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+whoami
+id -u
+
+ansible-playbook playbook.yml -i inventory.ini --extra-vars "ansible_sudo_pass=rootpass"
+https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-22.3.3.44.x86_64.rpm
+
+clickhouse-client -q 'create database logs;'
+systemctl |grep clickhouse
+clickhouse-client
+clickhouse-client --host 192.168.153.118
+
+select * from logs
+SHOW DATABASES LIKE '%logs%'
+CREATE DATABASE db_logs COMMENT 'logs';
+USE db_logs
+CREATE TABLE tbl_logs ("file" String, "hosts" String,"message" String,"timestamp" DateTime) ENGINE = Log;
+SELECT * FROM tbl_logs;
+CREATE DATABASE db_comment2 ENGINE = Memory COMMENT 'The temporary database';
+SELECT * FROM system.databases WHERE name = 'logs';
+CREATE TABLE logs (id int, name String) ENGINE = Log AS SELECT 1;
+
+sudo su
+su -
+ls -al /etc/sudo
+ls -al /etc/sudoers.d/
+touch /etc/sudoers.d/aleksturbo
+nano /etc/sudoers.d/aleksturbo
+    %aleksturbo ALL=(ALL) NOPASSWD: ALL
+cat /etc/sudoers.d/aleksturbo
+
+sudo firewall-cmd --permanent --zone=public --add-source=192.168.153.148/32
+sudo firewall-cmd --permanent --zone=public --add-port=8123/tcp
+sudo firewall-cmd --permanent --zone=public --add-port=9000/tcp
+sudo firewall-cmd --reload
+
+clickhouse-client --host 192.168.153.118 --multiline
+
+CREATE USER logger HOST IP '192.168.153.148' IDENTIFIED WITH sha256_password BY 'logger';
+CREATE USER logger DEFAULT ROLE ALL;
+SHOW GRANTS;
+CREATE USER OR REPLACE logger PROFILE 'default';
+CREATE USER OR REPLACE logger;
+CREATE USER <имя пользователя> IDENTIFIED WITH sha256_password BY '<пароль пользователя>';
+ALTER USER logger IDENTIFIED BY 'logger';
+
