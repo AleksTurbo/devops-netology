@@ -105,4 +105,9 @@ CREATE USER OR REPLACE logger PROFILE 'default';
 CREATE USER OR REPLACE logger;
 CREATE USER <имя пользователя> IDENTIFIED WITH sha256_password BY '<пароль пользователя>';
 ALTER USER logger IDENTIFIED BY 'logger';
+GRANT ALL ON db_logs.* TO logger;
 
+chkconfig nginx on
+firewall-cmd --zone=public --permanent --add-service=http
+firewall-cmd --zone=public --permanent --add-service=https
+firewall-cmd --reload
