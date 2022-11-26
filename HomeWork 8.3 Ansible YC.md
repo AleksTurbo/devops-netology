@@ -306,7 +306,8 @@ vector-01                  : ok=6    changed=0    unreachable=0    failed=0    s
 
 ```
 
-9. Не успеваю
+9. Документация на playbook:
+<https://github.com/AleksTurbo/ansible83>
 
 10. Ссылка на репозиторий: 
-<https://github.com/AleksTurbo/ansible82>
+<https://github.com/AleksTurbo/ansible83>
