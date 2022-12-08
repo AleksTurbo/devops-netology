@@ -1,0 +1,8 @@
+---
+# tasks file for myrole
+- name  : run my_own_module
+  my_own_module:
+    path: "{{ path }}"
+    filename: "{{ filename }}"
+    content: "{{ content }}"
+  register: log_out

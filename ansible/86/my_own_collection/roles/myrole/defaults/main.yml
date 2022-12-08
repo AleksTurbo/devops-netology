@@ -1,0 +1,5 @@
+---
+# defaults file for myrole
+  path: "/tmp/testfolder"
+  filename: "testfile"
+  content: "TestContents111\nTestContents222\n"

@@ -1,0 +1,11 @@
+{
+    "invocation": {
+        "module_args": {
+            "content": "some data \nmulti line", 
+            "path": "/tmp/test.txt"}
+            }, 
+            "message": "file was written", 
+            "changed": true, 
+            "original_message": 
+            "some data \nmulti line"
+        }
