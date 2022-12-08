@@ -55,8 +55,8 @@ Done!
 
 1-3. В виртуальном окружении создадим новый my_own_module.py файл и заполним кодом на выполнение задачи создания тестового файла с требуемым содержимым: готово
 
-[my_own_module.py](ansible\86\my_own_module.py)
-[input.json](ansible\86\input.json )
+*[my_own_module.py](https://github.com/AleksTurbo/devops-netology/blob/main/ansible/86/my_own_module.py)
+*[input.json](https://github.com/AleksTurbo/devops-netology/blob/main/ansible/86/input.json)
 
 4. Протестируем локально:
 
