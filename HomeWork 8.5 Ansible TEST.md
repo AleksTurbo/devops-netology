@@ -246,40 +246,129 @@ INFO     Initialized scenario in /home/aleksturbo/netology/ansible84/roles/vecto
 
 3. Внутри контейнера выполним команду "tox":
 
-:-( Что только не менял. Ну не запускается TOX нормально.
-
 ```bash
 [aleksturbo@oracle vector_role]$ docker run --privileged=True -v /home/aleksturbo/netology/vector_role:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash
 [root@b190cda47aa1 vector-role]# tox
-py39-ansible210 installed: ansible==2.10.7,ansible-base==2.10.17,ansible-compat==2.2.6,ansible-lint==5.1.3,arrow==1.2.3,attrs==22.1.0,bcrypt==4.0.1,binaryornot==0.4.4,bracex==2.3.post1,Cerberus==1.3.2,certifi==2022.9.24,cffi==1.15.1,chardet==5.1.0,charset-normalizer==2.1.1,click==8.1.3,click-help-colors==0.9.1,commonmark==0.9.1,cookiecutter==2.1.1,cryptography==38.0.4,distro==1.8.0,docker==6.0.1,enrich==1.2.7,idna==3.4,Jinja2==3.1.2,jinja2-time==0.2.0,jmespath==1.0.1,jsonschema==4.17.3,lxml==4.9.1,MarkupSafe==2.1.1,molecule==3.4.0,molecule-docker==1.1.0,packaging==21.3,paramiko==2.12.0,pathspec==0.10.2,pluggy==0.13.1,pycparser==2.21,Pygments==2.13.0,PyNaCl==1.5.0,pyparsing==3.0.9,pyrsistent==0.19.2,python-dateutil==2.8.2,python-slugify==7.0.0,PyYAML==5.4.1,requests==2.28.1,rich==12.6.0,ruamel.yaml==0.17.21,ruamel.yaml.clib==0.2.7,selinux==0.2.1,six==1.16.0,subprocess-tee==0.4.0,tenacity==8.1.0,text-unidecode==1.3,urllib3==1.26.13,wcmatch==8.4.1,websocket-client==1.4.2,yamllint==1.26.3
-py39-ansible210 run-test-pre: PYTHONHASHSEED='3107628013'
-py39-ansible210 run-test: commands[0] | molecule test -s tox --destroy always
----
-dependency:
-  name: galaxy
-driver:
-  name: podman
-platforms:
-  - image: docker.io/pycontribs/centos:7
-    name: instance
-    pre_build_image: true
-provisioner:
-  name: ansible
-scenario:
-  test_sequence:
-    - destroy
-    - create
-    - converge
-    - destroy
-verifier:
-  name: ansible
+[root@4603803b56ca vector_role]# tox
+py39-ansible210 create: /opt/vector_role/.tox/py39-ansible210
+py39-ansible210 installdeps: -rtox-requirements.txt, ansible<3.0
+py39-ansible210 installed: ansible==2.10.7,ansible-base==2.10.17,ansible-compat==2.2.7,ansible-lint==5.1.3,arrow==1.2.3,attrs==22.1.0,bcrypt==4.0.1,binaryornot==0.4.4,bracex==2.3.post1,Cerberus==1.3.2,certifi==2022.12.7,cffi==1.15.1,chardet==5.1.0,charset-normalizer==2.1.1,click==8.1.3,click-help-colors==0.9.1,commonmark==0.9.1,cookiecutter==2.1.1,cryptography==38.0.4,distro==1.8.0,enrich==1.2.7,idna==3.4,Jinja2==3.1.2,jinja2-time==0.2.0,jmespath==1.0.1,jsonschema==4.17.3,lxml==4.9.1,MarkupSafe==2.1.1,molecule==3.4.0,molecule-podman==1.0.1,packaging==22.0,paramiko==2.12.0,pathspec==0.10.3,pluggy==0.13.1,pycparser==2.21,Pygments==2.13.0,PyNaCl==1.5.0,pyrsistent==0.19.2,python-dateutil==2.8.2,python-slugify==7.0.0,PyYAML==5.4.1,requests==2.28.1,rich==12.6.0,ruamel.yaml==0.17.21,ruamel.yaml.clib==0.2.7,selinux==0.2.1,six==1.16.0,subprocess-tee==0.4.0,tenacity==8.1.0,text-unidecode==1.3,urllib3==1.26.13,wcmatch==8.4.1,yamllint==1.26.3
+py39-ansible210 run-test-pre: PYTHONHASHSEED='3205007282'
+py39-ansible210 run-test: commands[0] | molecule test -s compatibility --destroy always
+INFO     compatibility scenario test matrix: destroy, create, converge, destroy
+INFO     Performing prerun...
+WARNING  Failed to locate command: [Errno 2] No such file or directory: 'git'
+INFO     Guessed /opt/vector_role as project root directory
+INFO     Using /root/.cache/ansible-lint/76a2e5/roles/netology.vector_role symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Added ANSIBLE_ROLES_PATH=~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/root/.cache/ansible-lint/76a2e5/roles
+INFO     Running compatibility > destroy
+INFO     Sanity checks: 'podman'
 
-CRITICAL Failed to pre-validate.
+PLAY [Destroy] *****************************************************************
 
-{'driver': [{'name': ['unallowed value podman']}]}
-ERROR: InvocationError for command /opt/vector-role/.tox/py39-ansible210/bin/molecule test -s tox --destroy always (exited with code 1)
-_______________________________________________________________________________________________ summary ________________________________________________________________________________________________
-ERROR:   py39-ansible210: commands failed
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item={'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True})
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '354791104613.149', 'results_file': '/root/.ansible_async/354791104613.149', 'changed': True, 'failed': False, 'item': {'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True}, 'ansible_loop_var': 'item'})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Running compatibility > create
+
+PLAY [Create] ******************************************************************
+
+TASK [get podman executable path] **********************************************
+ok: [localhost]
+
+TASK [save path to executable as fact] *****************************************
+ok: [localhost]
+
+TASK [Log into a container registry] *******************************************
+skipping: [localhost] => (item="instance registry username: None specified") 
+
+TASK [Check presence of custom Dockerfiles] ************************************
+ok: [localhost] => (item=Dockerfile: None specified)
+
+TASK [Create Dockerfiles from image names] *************************************
+skipping: [localhost] => (item="Dockerfile: None specified; Image: docker.io/pycontribs/centos:7") 
+
+TASK [Discover local Podman images] ********************************************
+ok: [localhost] => (item=instance)
+
+TASK [Build an Ansible compatible image] ***************************************
+skipping: [localhost] => (item=docker.io/pycontribs/centos:7) 
+
+TASK [Determine the CMD directives] ********************************************
+ok: [localhost] => (item="instance command: None specified")
+
+TASK [Remove possible pre-existing containers] *********************************
+changed: [localhost]
+
+TASK [Discover local podman networks] ******************************************
+skipping: [localhost] => (item=instance: None specified) 
+
+TASK [Create podman network dedicated to this scenario] ************************
+skipping: [localhost]
+
+TASK [Create molecule instance(s)] *********************************************
+changed: [localhost] => (item=instance)
+
+TASK [Wait for instance(s) creation to complete] *******************************
+FAILED - RETRYING: Wait for instance(s) creation to complete (300 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (299 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (298 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (297 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (296 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (295 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (294 retries left).
+changed: [localhost] => (item=instance)
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=8    changed=3    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0
+
+INFO     Running compatibility > converge
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [instance]
+
+TASK [Copy something to test use of synchronize module] ************************
+changed: [instance]
+
+TASK [Include vector_role] *****************************************************
+
+TASK [netology.vector_role : Vector | Get vector distrib] **********************
+changed: [instance]
+
+TASK [netology.vector_role : Vector | Install vector rpm] **********************
+changed: [instance]
+
+PLAY RECAP *********************************************************************
+instance                   : ok=3    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+
+CRITICAL Ansible return code was 2, command was: ['ansible-playbook', '--inventory', '/root/.cache/molecule/vector_role/compatibility/inventory', '--skip-tags', 'molecule-notest,notest', '/opt/vector_role/molecule/compatibility/converge.yml']
+WARNING  An error occurred during the test sequence action: 'converge'. Cleaning up.
+INFO     Running compatibility > cleanup
+WARNING  Skipping, cleanup playbook not configured.
+INFO     Running compatibility > destroy
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item={'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True})
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+FAILED - RETRYING: Wait for instance(s) deletion to complete (300 retries left).
+FAILED - RETRYING: Wait for instance(s) deletion to complete (299 retries left).
+changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '138541302175.1401', 'results_file': '/root/.ansible_async/138541302175.1401', 'changed': True, 'failed': False, 'item': {'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True}, 'ansible_loop_var': 'item'})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Pruning extra files from scenario ephemeral directory
 ```
 
 4. Создаеv облегчённый сценарий для molecule с драйвером molecule_podman:
@@ -327,40 +416,129 @@ commands =
 
 6. Запусти команду tox на облегченном сценарии.
 
-:-( Что только не менял. Ну не запускается TOX нормально.
+
 
 ```bash
-[aleksturbo@oracle vector_role]$ docker run --privileged=True -v /home/aleksturbo/netology/vector_role:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash
-[root@b190cda47aa1 vector-role]# tox
-py39-ansible210 installed: ansible==2.10.7,ansible-base==2.10.17,ansible-compat==2.2.6,ansible-lint==5.1.3,arrow==1.2.3,attrs==22.1.0,bcrypt==4.0.1,binaryornot==0.4.4,bracex==2.3.post1,Cerberus==1.3.2,certifi==2022.9.24,cffi==1.15.1,chardet==5.1.0,charset-normalizer==2.1.1,click==8.1.3,click-help-colors==0.9.1,commonmark==0.9.1,cookiecutter==2.1.1,cryptography==38.0.4,distro==1.8.0,docker==6.0.1,enrich==1.2.7,idna==3.4,Jinja2==3.1.2,jinja2-time==0.2.0,jmespath==1.0.1,jsonschema==4.17.3,lxml==4.9.1,MarkupSafe==2.1.1,molecule==3.4.0,molecule-docker==1.1.0,packaging==21.3,paramiko==2.12.0,pathspec==0.10.2,pluggy==0.13.1,pycparser==2.21,Pygments==2.13.0,PyNaCl==1.5.0,pyparsing==3.0.9,pyrsistent==0.19.2,python-dateutil==2.8.2,python-slugify==7.0.0,PyYAML==5.4.1,requests==2.28.1,rich==12.6.0,ruamel.yaml==0.17.21,ruamel.yaml.clib==0.2.7,selinux==0.2.1,six==1.16.0,subprocess-tee==0.4.0,tenacity==8.1.0,text-unidecode==1.3,urllib3==1.26.13,wcmatch==8.4.1,websocket-client==1.4.2,yamllint==1.26.3
-py39-ansible210 run-test-pre: PYTHONHASHSEED='3107628013'
-py39-ansible210 run-test: commands[0] | molecule test -s tox --destroy always
----
-dependency:
-  name: galaxy
-driver:
-  name: podman
-platforms:
-  - image: docker.io/pycontribs/centos:7
-    name: instance
-    pre_build_image: true
-provisioner:
-  name: ansible
-scenario:
-  test_sequence:
-    - destroy
-    - create
-    - converge
-    - destroy
-verifier:
-  name: ansible
+[root@4603803b56ca vector_role]# tox
+py39-ansible210 create: /opt/vector_role/.tox/py39-ansible210
+py39-ansible210 installdeps: -rtox-requirements.txt, ansible<3.0
+py39-ansible210 installed: ansible==2.10.7,ansible-base==2.10.17,ansible-compat==2.2.7,ansible-lint==5.1.3,arrow==1.2.3,attrs==22.1.0,bcrypt==4.0.1,binaryornot==0.4.4,bracex==2.3.post1,Cerberus==1.3.2,certifi==2022.12.7,cffi==1.15.1,chardet==5.1.0,charset-normalizer==2.1.1,click==8.1.3,click-help-colors==0.9.1,commonmark==0.9.1,cookiecutter==2.1.1,cryptography==38.0.4,distro==1.8.0,enrich==1.2.7,idna==3.4,Jinja2==3.1.2,jinja2-time==0.2.0,jmespath==1.0.1,jsonschema==4.17.3,lxml==4.9.1,MarkupSafe==2.1.1,molecule==3.4.0,molecule-podman==1.0.1,packaging==22.0,paramiko==2.12.0,pathspec==0.10.3,pluggy==0.13.1,pycparser==2.21,Pygments==2.13.0,PyNaCl==1.5.0,pyrsistent==0.19.2,python-dateutil==2.8.2,python-slugify==7.0.0,PyYAML==5.4.1,requests==2.28.1,rich==12.6.0,ruamel.yaml==0.17.21,ruamel.yaml.clib==0.2.7,selinux==0.2.1,six==1.16.0,subprocess-tee==0.4.0,tenacity==8.1.0,text-unidecode==1.3,urllib3==1.26.13,wcmatch==8.4.1,yamllint==1.26.3
+py39-ansible210 run-test-pre: PYTHONHASHSEED='3205007282'
+py39-ansible210 run-test: commands[0] | molecule test -s compatibility --destroy always
+INFO     compatibility scenario test matrix: destroy, create, converge, destroy
+INFO     Performing prerun...
+WARNING  Failed to locate command: [Errno 2] No such file or directory: 'git'
+INFO     Guessed /opt/vector_role as project root directory
+INFO     Using /root/.cache/ansible-lint/76a2e5/roles/netology.vector_role symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Added ANSIBLE_ROLES_PATH=~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/root/.cache/ansible-lint/76a2e5/roles
+INFO     Running compatibility > destroy
+INFO     Sanity checks: 'podman'
 
-CRITICAL Failed to pre-validate.
+PLAY [Destroy] *****************************************************************
 
-{'driver': [{'name': ['unallowed value podman']}]}
-ERROR: InvocationError for command /opt/vector-role/.tox/py39-ansible210/bin/molecule test -s tox --destroy always (exited with code 1)
-_______________________________________________________________________________________________ summary ________________________________________________________________________________________________
-ERROR:   py39-ansible210: commands failed
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item={'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True})
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '354791104613.149', 'results_file': '/root/.ansible_async/354791104613.149', 'changed': True, 'failed': False, 'item': {'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True}, 'ansible_loop_var': 'item'})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Running compatibility > create
+
+PLAY [Create] ******************************************************************
+
+TASK [get podman executable path] **********************************************
+ok: [localhost]
+
+TASK [save path to executable as fact] *****************************************
+ok: [localhost]
+
+TASK [Log into a container registry] *******************************************
+skipping: [localhost] => (item="instance registry username: None specified") 
+
+TASK [Check presence of custom Dockerfiles] ************************************
+ok: [localhost] => (item=Dockerfile: None specified)
+
+TASK [Create Dockerfiles from image names] *************************************
+skipping: [localhost] => (item="Dockerfile: None specified; Image: docker.io/pycontribs/centos:7") 
+
+TASK [Discover local Podman images] ********************************************
+ok: [localhost] => (item=instance)
+
+TASK [Build an Ansible compatible image] ***************************************
+skipping: [localhost] => (item=docker.io/pycontribs/centos:7) 
+
+TASK [Determine the CMD directives] ********************************************
+ok: [localhost] => (item="instance command: None specified")
+
+TASK [Remove possible pre-existing containers] *********************************
+changed: [localhost]
+
+TASK [Discover local podman networks] ******************************************
+skipping: [localhost] => (item=instance: None specified) 
+
+TASK [Create podman network dedicated to this scenario] ************************
+skipping: [localhost]
+
+TASK [Create molecule instance(s)] *********************************************
+changed: [localhost] => (item=instance)
+
+TASK [Wait for instance(s) creation to complete] *******************************
+FAILED - RETRYING: Wait for instance(s) creation to complete (300 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (299 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (298 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (297 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (296 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (295 retries left).
+FAILED - RETRYING: Wait for instance(s) creation to complete (294 retries left).
+changed: [localhost] => (item=instance)
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=8    changed=3    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0
+
+INFO     Running compatibility > converge
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [instance]
+
+TASK [Copy something to test use of synchronize module] ************************
+changed: [instance]
+
+TASK [Include vector_role] *****************************************************
+
+TASK [netology.vector_role : Vector | Get vector distrib] **********************
+changed: [instance]
+
+TASK [netology.vector_role : Vector | Install vector rpm] **********************
+changed: [instance]
+
+PLAY RECAP *********************************************************************
+instance                   : ok=3    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+
+CRITICAL Ansible return code was 2, command was: ['ansible-playbook', '--inventory', '/root/.cache/molecule/vector_role/compatibility/inventory', '--skip-tags', 'molecule-notest,notest', '/opt/vector_role/molecule/compatibility/converge.yml']
+WARNING  An error occurred during the test sequence action: 'converge'. Cleaning up.
+INFO     Running compatibility > cleanup
+WARNING  Skipping, cleanup playbook not configured.
+INFO     Running compatibility > destroy
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item={'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True})
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+FAILED - RETRYING: Wait for instance(s) deletion to complete (300 retries left).
+FAILED - RETRYING: Wait for instance(s) deletion to complete (299 retries left).
+changed: [localhost] => (item={'started': 1, 'finished': 0, 'ansible_job_id': '138541302175.1401', 'results_file': '/root/.ansible_async/138541302175.1401', 'changed': True, 'failed': False, 'item': {'image': 'docker.io/pycontribs/centos:7', 'name': 'instance', 'pre_build_image': True}, 'ansible_loop_var': 'item'})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Pruning extra files from scenario ephemeral directory
 ```
 
 7. Добавим новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием: - готово.
