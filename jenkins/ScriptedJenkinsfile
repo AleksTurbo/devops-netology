@@ -1,0 +1,24 @@
+node("linux"){
+    stage("Check MOD"){
+        echo '************'
+        echo "$env.prod_run"
+        echo '************'
+    }
+    stage("Git checkout"){
+        git branch: 'main', credentialsId: 'f59aef6e-8d62-4533-bf96-fe5977309a56', url: 'git@github.com:AleksTurbo/example-playbook.git'
+    }
+    stage("Run playbook"){
+        if (env.prod_run=='True')
+        {
+            echo "$env.prod_run"
+            echo '***PROD***'
+            sh 'ansible-playbook site.yml -i inventory/prod.yml'
+        }
+        if (env.prod_run=='False'){
+            echo "$env.prod_run"
+            echo '***DEV***'
+            sh 'ansible-playbook site.yml -i inventory/prod.yml  --check --diff'
+        }
+    }
+    
+}
