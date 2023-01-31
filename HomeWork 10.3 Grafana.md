@@ -15,7 +15,7 @@ f609477733fe   grafana/grafana:7.4.0           "/run.sh"                2 days a
 
 Grafana - DATA Source
 
-<img src="img/HW 10.4 GrafanaDATASource.png"/>
+<img src="img/HW 10.3 GrafanaDATASource.png"/>
 
 ### 2. DIY DashBoard:
 
@@ -47,7 +47,7 @@ node_filesystem_avail_bytes {fstype=~"ext4|xfs"}
 
 DashBoard:
 
-<img src="img/HW 10.4 Grafana DIY DashBoard.png"/>
+<img src="img/HW 10.3 Grafana DIY DashBoard.png"/>
 
 ### 3. ALERTING:
 
@@ -61,7 +61,7 @@ stress: info: [17737] successful run completed in 61s
 
 DashBoard with ALERT:
 
-<img src="img/HW 10.4 Grafana DIY Alerting.png"/>
+<img src="img/HW 10.3 Grafana DIY Alerting.png"/>
 
 ### 4. ALERTING Export:
 
