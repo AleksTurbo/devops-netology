@@ -127,7 +127,7 @@ Commercial support is available at
  initContainers:
       - name: init-nginx
         image: busybox:1.28
-        command: ['sh', '-c', "until nslookup init-nginx.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for init-nginx; sleep 2; done"]
+        command: ['sh', '-c', "until nslookup nginx.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for init-nginx; sleep 2; done"]
 ```
 
 2. Ожидание запуска
