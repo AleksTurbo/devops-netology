@@ -123,7 +123,7 @@ WBITT Network MultiTool (with NGINX) - netology-deployment-5dfbbd964-g867g - 10.
 
 <img src="img/HW 12.4 combo-svc.png"/>
 
-## Задание 1 - Создать Service и обеспечить доступ к приложениям снаружи кластера
+## Задание 2 - Создать Service и обеспечить доступ к приложениям снаружи кластера
 
 1. Отдельный Service приложения из Задания 1 с возможностью доступа снаружи кластера к nginx, используя тип NodePort:
 
