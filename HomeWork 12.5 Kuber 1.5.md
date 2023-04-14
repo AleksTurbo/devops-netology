@@ -153,6 +153,26 @@ WBITT Network MultiTool (with NGINX) - backend-dpl-74b5bb57f8-zcm55 - 10.1.128.2
 
 [ingress.yaml](/kubernetes/ingress.yaml)
 
+```bash
+root@microk8s:~# kubectl describe ingress
+Name:             netology-ingress
+Labels:           <none>
+Namespace:        default
+Address:          127.0.0.1
+Ingress Class:    nginx
+Default backend:  frontend-svc:80 (10.1.128.193:80,10.1.128.213:80,10.1.128.241:80)
+Rules:
+  Host        Path  Backends
+  ----        ----  --------
+  *
+              /               frontend-svc:80 (10.1.128.193:80,10.1.128.213:80,10.1.128.241:80)
+              /api(/|$)(.*)   backend-svc:80 (10.1.128.203:80)
+              /v2             web2:8080 (10.1.128.207:8080)
+Annotations:  nginx.ingress.kubernetes.io/rewrite-target: /$2
+              nginx.ingress.kubernetes.io/use-regex: true
+Events:       <none>
+```
+
 <img src="img/HW 12.5 MicroK8S 6.png"/>
 
 - 
