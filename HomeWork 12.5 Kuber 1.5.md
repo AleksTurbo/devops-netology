@@ -21,10 +21,8 @@
 ```bash
 root@microk8s:~# kubectl get deployments
 NAME          READY   UP-TO-DATE   AVAILABLE   AGE
-frontend      3/3     3            3           42h
-web2          1/1     1            1           27h
-backend-dpl   1/1     1            1           17h
-
+frontend      3/3     3            3           2d23h
+backend-dpl   1/1     1            1           46h
 
 root@microk8s:~# kubectl get pods -n default -o wide
 NAME                           READY   STATUS    RESTARTS      AGE   IP             NODE       NOMINATED NODE   READINESS GATES
@@ -34,11 +32,10 @@ frontend-65cd8c9bfd-nwskz      1/1     Running   1 (40h ago)   42h   10.1.128.19
 backend-dpl-74b5bb57f8-zcm55   1/1     Running   0             17h   10.1.128.203   microk8s   <none>           <none>
 
 root@microk8s:~# kubectl get svc -o wide
-NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE     SELECTOR
-kubernetes     ClusterIP   10.152.183.1     <none>        443/TCP          4d18h   <none>
-frontend-svc   ClusterIP   10.152.183.96    <none>        80/TCP           42h     app=frontend
-backend-svc    ClusterIP   10.152.183.136   <none>        80/TCP           17h     app=backend
-ext-bknd-svc   NodePort    10.152.183.111   <none>        80:30080/TCP     17h     app=backend
+NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE     SELECTOR
+kubernetes     ClusterIP   10.152.183.1     <none>        443/TCP   5d23h   <none>
+frontend-svc   ClusterIP   10.152.183.96    <none>        80/TCP    2d23h   app=frontend
+backend-svc    ClusterIP   10.152.183.136   <none>        80/TCP    46h     app=backend
 
 root@microk8s:~# kubectl exec backend-dpl-74b5bb57f8-zcm55 -- curl frontend-svc:80
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -166,8 +163,7 @@ Rules:
   ----        ----  --------
   *
               /               frontend-svc:80 (10.1.128.193:80,10.1.128.213:80,10.1.128.241:80)
-              /api(/|$)(.*)   backend-svc:80 (10.1.128.203:80)
-              /v2             web2:8080 (10.1.128.207:8080)
+              /api(/|$)(.*)   backend-svc:80 (10.1.128.200:80)
 Annotations:  nginx.ingress.kubernetes.io/rewrite-target: /$2
               nginx.ingress.kubernetes.io/use-regex: true
 Events:       <none>

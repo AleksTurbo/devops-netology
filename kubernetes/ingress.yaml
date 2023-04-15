@@ -31,10 +31,3 @@ spec:
             name: backend-svc
             port:
               number: 80
-      - path: /v2
-        pathType: Prefix
-        backend:
-          service:
-            name: web2
-            port:
-              number: 8080
