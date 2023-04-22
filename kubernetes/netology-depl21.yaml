@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netology-depl-21volume
+  labels:
+    app: shrvlm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shrvlm
+  template:
+    metadata:
+      labels:
+        app: shrvlm
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ['sh', '-c', 'while true; do echo $RANDOM | md5sum >> /tmp/shrvlm/test.txt; sleep 5; done']
+        volumeMounts:
+        - name: shr-vlm
+          mountPath: /tmp/shrvlm
+
+      - name: network-multitool
+        image: wbitt/network-multitool
+        volumeMounts:
+        - name: shr-vlm
+          mountPath: /shr-vlm
+        env:
+        - name: HTTP_PORT
+          value: "80"
+        - name: HTTPS_PORT
+          value: "443"
+        ports:
+        - containerPort: 80
+          name: http-port
+        - containerPort: 443
+          name: https-port
+        resources:
+          requests:
+            cpu: "1m"
+            memory: "20Mi"
+          limits:
+            cpu: "10m"
+            memory: "20Mi"
+      volumes:
+      - name: shr-vlm
+        emptyDir: {}

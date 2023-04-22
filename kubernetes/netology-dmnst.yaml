@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: netology-dmnst-21volume
+  labels:
+    app: dmnst-mltl
+spec:
+  selector:
+    matchLabels:
+      app: dmnst-mltl
+  template:
+    metadata:
+      labels:
+        app: dmnst-mltl
+    spec:
+      containers:
+      - name: network-multitool
+        image: wbitt/network-multitool
+        volumeMounts:
+        - name: volume-host
+          mountPath: /shr-vlm
+        env:
+        - name: HTTP_PORT
+          value: "80"
+        - name: HTTPS_PORT
+          value: "443"
+        ports:
+        - containerPort: 80
+          name: http-port
+        - containerPort: 443
+          name: https-port
+        resources:
+          requests:
+            cpu: "1m"
+            memory: "20Mi"
+          limits:
+            cpu: "10m"
+            memory: "20Mi"
+      volumes:
+      - name: volume-host
+        hostPath:
+          path: /var/log
