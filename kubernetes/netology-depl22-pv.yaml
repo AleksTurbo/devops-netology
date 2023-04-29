@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netology-depl-22-pv-volume
+  labels:
+    app: pvcvlm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pvcvlm
+  template:
+    metadata:
+      labels:
+        app: pvcvlm
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ['sh', '-c', 'while true; do echo $RANDOM | md5sum >> /tmp/pvc-vlm/test.txt; sleep 5; done']
+        volumeMounts:
+        - name: pvc-vlm
+          mountPath: /tmp/pvc-vlm
+
+      - name: network-multitool
+        image: wbitt/network-multitool
+        volumeMounts:
+        - name: pvc-vlm
+          mountPath: /pvc-vlm
+        env:
+        - name: HTTP_PORT
+          value: "80"
+        - name: HTTPS_PORT
+          value: "443"
+        ports:
+        - containerPort: 80
+          name: http-port
+        - containerPort: 443
+          name: https-port
+        resources:
+          requests:
+            cpu: "1m"
+            memory: "20Mi"
+          limits:
+            cpu: "10m"
+            memory: "20Mi"
+      volumes:
+      - name: pvc-vlm
+        persistentVolumeClaim:
+          claimName: pvc-volume

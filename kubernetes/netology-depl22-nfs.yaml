@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netology-depl-22-nfs-volume
+  labels:
+    app: pvc-nfs-vlm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pvcvlm
+  template:
+    metadata:
+      labels:
+        app: pvcvlm
+    spec:
+      containers:
+      - name: network-multitool
+        image: wbitt/network-multitool
+        volumeMounts:
+        - name: pvc-nfs-vlm
+          mountPath: /pvc-nfs-vlm
+        env:
+        - name: HTTP_PORT
+          value: "80"
+        - name: HTTPS_PORT
+          value: "443"
+        ports:
+        - containerPort: 80
+          name: http-port
+        - containerPort: 443
+          name: https-port
+        resources:
+          requests:
+            cpu: "1m"
+            memory: "20Mi"
+          limits:
+            cpu: "10m"
+            memory: "20Mi"
+      volumes:
+      - name: pvc-nfs-vlm
+        persistentVolumeClaim:
+          claimName: pvc-nfs-volume
