@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mtool-pod
+  labels:
+    app: mtool-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mtool-pod
+  template:
+    metadata:
+      labels:
+        app: mtool-pod
+    spec:
+      containers:
+        - image: wbitt/network-multitool
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: nginx-index
+              mountPath: /usr/share/nginx/html/
+          name: network-multitool
+          env:
+          - name: HTTP_PORT
+            value: "80"
+          resources:
+            limits:
+              cpu: 200m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+      volumes:
+      - name: nginx-index
+        configMap:
+          name: netology-configmap
+      initContainers:
+      - name: init-mtool-svc
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup mtool-svc.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mtool-svc; sleep 2; done"]
