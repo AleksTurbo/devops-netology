@@ -1,0 +1,14 @@
+---------------------------------------------------------
+
+Content of NOTES.txt appears after deploy.
+NETOLOGY STUDENT`S HOME WORK A.Pustovit DevKub19
+Deployed version {{ .Chart.AppVersion }}.
+NS: {{ .Release.Namespace }}
+
+1. Get the application URL running with these commands:
+export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app=nginx-app" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:80
+2. Visit http://127.0.0.1:8080 to use your application
+or
+3. kubectl exec $POD_NAME -n {{ .Release.Namespace }} -it -- sh
+---------------------------------------------------------

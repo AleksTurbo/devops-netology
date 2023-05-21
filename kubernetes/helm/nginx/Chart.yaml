@@ -1,0 +1,7 @@
+apiVersion: v2
+name: nginx-app
+description: netology chart for nginx
+type: application
+version: 0.1.1
+appVersion: "1.20.2"
+
