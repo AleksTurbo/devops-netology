@@ -124,13 +124,13 @@ Accept-Ranges: bytes
 4. Создадим политики, чтобы обеспечить доступ frontend -> backend -> cache. Другие виды подключений должны быть запрещены:
 
 - общее запрещающее правило:
-[np-default.yaml](/kubernetes\net-pol\np-default.yaml)
+[np-default.yaml](/kubernetes/net-pol/np-default.yaml)
 
 - Разрешаем frontend -> backend
-[np-backend.yaml](/kubernetes\net-pol\np-backend.yaml)
+[np-backend.yaml](/kubernetes/net-pol/np-backend.yaml)
 
 - Разрешаем backend -> cache
-[np-cache.yaml](/kubernetes\net-pol\np-cache.yaml)
+[np-cache.yaml](/kubernetes/net-pol/np-cache.yaml)
 
 5. Демонстрация действия политик:
 
