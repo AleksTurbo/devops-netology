@@ -4,11 +4,11 @@
 
 1. Создадим deployment'ы приложений frontend, backend и cache и соответсвующие сервисы:
 
-[dplmnt-frontend.yaml](/kubernetes\net-pol\dplmnt-frontend.yaml)
+[dplmnt-frontend.yaml](/kubernetes/net-pol/dplmnt-frontend.yaml)
 
-[dplmnt-backend.yaml](/kubernetes\net-pol\dplmnt-backend.yaml)
+[dplmnt-backend.yaml](/kubernetes/net-pol/dplmnt-backend.yaml)
 
-[dplmnt-cache.yaml](/kubernetes\net-pol\dplmnt-cache.yaml)
+[dplmnt-cache.yaml](/kubernetes/net-pol/dplmnt-cache.yaml)
 
 2. В качестве образа используем "network-multitool"
 
