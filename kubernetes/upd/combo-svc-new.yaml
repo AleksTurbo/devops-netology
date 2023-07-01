@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: combo-svc-new
+spec:
+  selector:
+    app: ntlg-dpl-new
+  ports:
+    - name: web-nginx
+      port: 9003
+      targetPort: 80
+    - name: web-mtools
+      port: 9004
+      targetPort: 8080
