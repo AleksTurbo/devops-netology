@@ -264,21 +264,52 @@ root@kube-master:~# kubectl apply -f '/root/ext-combo-svc-new.yaml'
 service/ext-combo-svc-new created
 ```
 
-- Настраиваем ingress:
+- Настраиваем ingress (для наглядности устанавливаем % распределения 50%):
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: canary-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "50"
+```
 
 ```bash
 root@kube-master:~# kubectl get svc
 NAME                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                         AGE
-combo-svc           ClusterIP   10.110.154.7    <none>        9001/TCP,9002/TCP               20h
-combo-svc-new       ClusterIP   10.103.125.62   <none>        9003/TCP,9004/TCP               17m
-ext-combo-svc       NodePort    10.105.22.45    <none>        9001:30080/TCP,9002:30880/TCP   20h
-ext-combo-svc-new   NodePort    10.96.239.237   <none>        9003:30081/TCP,9004:30881/TCP   16m
+canary-service      ClusterIP   10.102.0.217    <none>        9003/TCP,9004/TCP               12m
+combo-svc           ClusterIP   10.110.154.7    <none>        9001/TCP,9002/TCP               46h
+ext-combo-svc       NodePort    10.105.22.45    <none>        9001:30080/TCP,9002:30880/TCP   46h
+ext-combo-svc-new   NodePort    10.96.239.237   <none>        9003:30081/TCP,9004:30881/TCP   25h
+kubernetes          ClusterIP   10.96.0.1       <none>        443/TCP                         46h
 
 root@kube-master:~# kubectl get ing
 NAME               CLASS   HOSTS   ADDRESS         PORTS   AGE
-netology-ingress   nginx   *       192.168.84.50   80      161m
+canary-ingress     nginx   *       192.168.84.50   80      5m10s
+netology-ingress   nginx   *       192.168.84.50   80      28h
 
 root@kube-master:~# kubectl describe ing
+Name:             canary-ingress
+Labels:           <none>
+Namespace:        default
+Address:          192.168.84.50
+Ingress Class:    nginx
+Default backend:  <default>
+Rules:
+  Host        Path  Backends
+  ----        ----  --------
+  *           
+              /   canary-service:80 ()
+Annotations:  nginx.ingress.kubernetes.io/canary: true
+              nginx.ingress.kubernetes.io/canary-weight: 50
+Events:
+  Type    Reason  Age                    From                      Message
+  ----    ------  ----                   ----                      -------
+  Normal  Sync    5m26s (x2 over 5m41s)  nginx-ingress-controller  Scheduled for sync
+
+
 Name:             netology-ingress
 Labels:           <none>
 Namespace:        default
@@ -290,13 +321,10 @@ Rules:
   ----        ----  --------
   *           
               /               combo-svc:80 ()
-              /new(/|$)(.*)   combo-svc-new:80 ()
+              /new(/|$)(.*)   combo-svc-new:80 (<error: endpoints "combo-svc-new" not found>)
 Annotations:  nginx.ingress.kubernetes.io/rewrite-target: /$2
               nginx.ingress.kubernetes.io/use-regex: true
-Events:
-  Type    Reason  Age                  From                      Message
-  ----    ------  ----                 ----                      -------
-  Normal  Sync    2m4s (x3 over 138m)  nginx-ingress-controller  Scheduled for sync
+Events:       <none>
 ```
 
 - Проверяем работоспособность 2 версий приложения:
@@ -313,8 +341,18 @@ root@kube-master:~# curl http://kubeer.loc/
 <h1>TEST ConfigMap Netology Kuber 3.4</h1>
 </body>
 </html
-
-root@kube-master:~# curl http://kubeer.loc/new
+root@kube-master:~# curl http://kubeer.loc/
+<html>
+<head>
+<title>*** TEST NGINX 1.19 ***</title>
+</head>
+<body>
+<h1>*** TEST NGINX 1.19 ***</h1>
+</br>
+<h1>TEST ConfigMap Netology Kuber 3.4</h1>
+</body>
+</html
+root@kube-master:~# curl http://kubeer.loc/
 <html>
 <head>
 <title>*** TEST NGINX 1.20 ***</title>
@@ -325,6 +363,22 @@ root@kube-master:~# curl http://kubeer.loc/new
 <h1>TEST ConfigMap Netology Kuber 3.4</h1>
 </body>
 </html
+root@kube-master:~# curl http://kubeer.loc/
+<html>
+<head>
+<title>*** TEST NGINX 1.20 ***</title>
+</head>
+<body>
+<h1>*** TEST NGINX 1.20 ***</h1>
+</br>
+<h1>TEST ConfigMap Netology Kuber 3.4</h1>
+</body>
+</html
+
 ```
 
-<img src="img/HW 13 K8S 3.4 nginx 1.19 + 1.20.png"/>
+- Тестируем - обновляем страницу браузера несколько раз - с вероятностью 50% выводится или версия 1.19 или версия 1.20 приложения
+
+<img src="img/HW 13 K8S 3.4 canary 1.19.png"/>
+
+<img src="img/HW 13 K8S 3.4 canary 1.20.png"/>
