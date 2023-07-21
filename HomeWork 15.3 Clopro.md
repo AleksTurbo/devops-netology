@@ -40,6 +40,8 @@ server_side_encryption_configuration {
   }
 ```
 
+- проверяем результат
+
 ```bash
 [root@oracle clopro3]# aws --endpoint-url=https://storage.yandexcloud.net/ s3api get-bucket-encryption --bucket pustovit-netology-bucket
 {
